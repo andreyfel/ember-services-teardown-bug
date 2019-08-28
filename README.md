@@ -1,7 +1,15 @@
 # ember-services-teardown-bug
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+This is a bug reproduction repository. Here is the bug:
+In ServiceA's `willDestroy` hook we call hi() method of the ServiceB. Until that moment ServiceB hasn't been invoked in any way, so, that call triggered init() of the ServiceB. ServiceB's `willDestroy` hook is not triggered.
+In order to see the issue run tests and look at the console.
+Expected output:
+ServiceA init
+Hi from ServiceA
+ServiceA willDestroy
+ServiceB init
+Hi from ServiceB
+ServiceB willDestroy <---- It never shows up in the console.
 
 ## Prerequisites
 
